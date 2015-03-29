@@ -16,7 +16,7 @@ describe('fillet', function () {
 
     it('getAverageRunTime without runs', function (done) {
 
-        var fillet = new Fillet;
+        var fillet = new Fillet();
         var runs = [];
         var average = fillet.getAverageRunTime(runs);
         expect(average).to.equal(0);
@@ -25,7 +25,7 @@ describe('fillet', function () {
 
     it('getAverageRunTime with runs', function (done) {
 
-        var fillet = new Fillet;
+        var fillet = new Fillet();
         var runs = [
             { jobId: 1, duration: 1000},
             { jobId: 2, duration: 3000}
