@@ -27,8 +27,8 @@ describe('fillet', function () {
 
         var fillet = new Fillet();
         var runs = [
-            { jobId: 1, duration: 1000},
-            { jobId: 2, duration: 3000}
+            { jobId: 1, duration: 1000 },
+            { jobId: 2, duration: 3000 }
         ];
         var average = fillet.getAverageRunTime(runs);
         expect(average).to.equal(2000);
