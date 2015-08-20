@@ -34,4 +34,28 @@ describe('fillet', function () {
         expect(average).to.equal(2000);
         done();
     });
+
+    it('getRunsStats', function (done) {
+
+        var fillet = new Fillet();
+        var runs = [
+            { jobId: 1, runId: 1, startTime: 1, finishTime: 2 },
+            { jobId: 1, runId: 2, startTime: 3 }
+        ];
+        var runStats = fillet.getRunsStats(runs);
+        expect(runStats.runs.length).to.equal(1);
+        done();
+    });
+
+    it('getRunsStats limit', function (done) {
+
+        var fillet = new Fillet();
+        var runs = [
+            { jobId: 1, runId: 1, startTime: 1, finishTime: 2 },
+            { jobId: 1, runId: 2, startTime: 3, finishTime: 4 }
+        ];
+        var runStats = fillet.getRunsStats(runs, 1);
+        expect(runStats.runs.length).to.equal(1);
+        done();
+    });
 });
