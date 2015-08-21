@@ -20,7 +20,8 @@ describe('fillet', function () {
         var runs = [];
         var runStats = fillet.getRunsStats(runs);
         expect(runStats.runs.length).to.equal(0);
-        expect(runStats.average).to.not.exist();
+        expect(runStats.average.total).to.equal(0);
+        expect(runStats.average.succeeded).to.equal(0);
         done();
     });
 
@@ -45,6 +46,20 @@ describe('fillet', function () {
         ];
         var runStats = fillet.getRunsStats(runs, 1);
         expect(runStats.runs.length).to.equal(1);
+        done();
+    });
+
+    it('getRunsStats averages', function (done) {
+
+        var fillet = new Fillet();
+        var runs = [
+            { jobId: 1, runId: 1, startTime: 10, finishTime: 40, duration: 30, status: 'succeeded' },
+            { jobId: 1, runId: 2, startTime: 10, finishTime: 20, duration: 10, status: 'failed' }
+        ];
+        var runStats = fillet.getRunsStats(runs);
+        expect(runStats.runs.length).to.equal(2);
+        expect(runStats.average.total).to.equal(20);
+        expect(runStats.average.succeeded).to.equal(30);
         done();
     });
 });
