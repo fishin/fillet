@@ -14,24 +14,13 @@ var it = lab.it;
 
 describe('fillet', function () {
 
-    it('getAverageRunTime without runs', function (done) {
+    it('getRunsStats none', function (done) {
 
         var fillet = new Fillet();
         var runs = [];
-        var average = fillet.getAverageRunTime(runs);
-        expect(average).to.equal(0);
-        done();
-    });
-
-    it('getAverageRunTime with runs', function (done) {
-
-        var fillet = new Fillet();
-        var runs = [
-            { jobId: 1, duration: 1000 },
-            { jobId: 2, duration: 3000 }
-        ];
-        var average = fillet.getAverageRunTime(runs);
-        expect(average).to.equal(2000);
+        var runStats = fillet.getRunsStats(runs);
+        expect(runStats.runs.length).to.equal(0);
+        expect(runStats.average).to.not.exist();
         done();
     });
 

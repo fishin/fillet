@@ -1,6 +1,6 @@
 {
   "name": "fillet",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "statistic functions for ficion",
   "main": "lib/index.js",
   "repository": {
