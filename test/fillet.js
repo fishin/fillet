@@ -74,8 +74,17 @@ describe('fillet', function () {
 
         var fillet = new Fillet();
         var runs = [
-            { jobId: 1, runId: 1, startTime: 1, finishTime: 2 },
-            { jobId: 1, runId: 2, startTime: 3 }
+            {
+                jobId: 1,
+                runId: 1,
+                startTime: 1,
+                finishTime: 2
+            },
+            {
+                jobId: 1,
+                runId: 2,
+                startTime: 3
+            }
         ];
         var runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(1);
@@ -86,8 +95,18 @@ describe('fillet', function () {
 
         var fillet = new Fillet();
         var runs = [
-            { jobId: 1, runId: 1, startTime: 1, finishTime: 2 },
-            { jobId: 1, runId: 2, startTime: 3, finishTime: 4 }
+            {
+                jobId: 1,
+                runId: 1,
+                startTime: 1,
+                finishTime: 2
+            },
+            {
+                jobId: 1,
+                runId: 2,
+                startTime: 3,
+                finishTime: 4
+            }
         ];
         var runsStats = fillet.getRunsStats(runs, 1);
         expect(runsStats.runs.length).to.equal(1);
@@ -98,8 +117,22 @@ describe('fillet', function () {
 
         var fillet = new Fillet();
         var runs = [
-            { jobId: 1, runId: 1, startTime: 10, finishTime: 40, duration: 30, status: 'succeeded' },
-            { jobId: 1, runId: 2, startTime: 10, finishTime: 20, duration: 10, status: 'failed' }
+            {
+                jobId: 1,
+                runId: 1,
+                startTime: 10,
+                finishTime: 40,
+                duration: 30,
+                status: 'succeeded'
+            },
+            {
+                jobId: 1,
+                runId: 2,
+                startTime: 10,
+                finishTime: 20,
+                duration: 10,
+                status: 'failed'
+            }
         ];
         var runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(2);
