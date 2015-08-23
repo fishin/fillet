@@ -80,10 +80,12 @@ describe('fillet', function () {
                 startTime: 1,
                 finishTime: 2,
                 testFile: {
-                    tests: [
-                        { title: 'title1', err: false },
-                        { title: 'title2', err: true }
-                    ]
+                    tests: {
+                        job: [
+                            { title: 'title1', err: false },
+                            { title: 'title2', err: true }
+                        ]
+                    }
                 }
             },
             {
