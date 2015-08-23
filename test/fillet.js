@@ -14,10 +14,46 @@ var it = lab.it;
 
 describe('fillet', function () {
 
-    it('getRunStats none', function (done) {
+    it('getRunStats no checkout', function (done) {
 
         var fillet = new Fillet();
-        var run = { id: 1 };
+        var run = {
+            id: 1,
+            commands: [
+                {
+                    command: 'command 1',
+                    startTime: 3,
+                    finishTime: 4
+                }
+            ]
+        };
+        var runStats = fillet.getRunStats(run);
+        expect(runStats.id).to.equal(1);
+        done();
+    });
+
+    it('getRunStats checkout commands', function (done) {
+
+        var fillet = new Fillet();
+        var run = {
+            id: 1,
+            checkout: {
+                commands: [
+                    {
+                        command: 'git clone',
+                        startTime: 1,
+                        finishTime: 2
+                    }
+                ]
+            },
+            commands: [
+                {
+                    command: 'command 1',
+                    startTime: 3,
+                    finishTime: 4
+                }
+            ]
+        };
         var runStats = fillet.getRunStats(run);
         expect(runStats.id).to.equal(1);
         done();
