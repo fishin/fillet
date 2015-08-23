@@ -52,10 +52,19 @@ describe('fillet', function () {
                     startTime: 3,
                     finishTime: 4
                 }
-            ]
+            ],
+            testFile: {
+                tests: {
+                    job: [
+                        { title: 'title1', err: false },
+                        { title: 'title2', err: true }
+                    ]
+                }
+            }
         };
         var runStats = fillet.getRunStats(run);
         expect(runStats.id).to.equal(1);
+        expect(runStats.tests.length).to.equal(2);
         done();
     });
 
