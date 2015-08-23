@@ -78,7 +78,13 @@ describe('fillet', function () {
                 jobId: 1,
                 runId: 1,
                 startTime: 1,
-                finishTime: 2
+                finishTime: 2,
+                testFile: {
+                    tests: [
+                        { title: 'title1', err: false },
+                        { title: 'title2', err: true }
+                    ]
+                }
             },
             {
                 jobId: 1,
@@ -88,6 +94,9 @@ describe('fillet', function () {
         ];
         var runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(1);
+        expect(runsStats.runs[0].tests.total).to.equal(2);
+        expect(runsStats.runs[0].tests.succeeded).to.equal(1);
+        expect(runsStats.runs[0].tests.failed).to.equal(1);
         done();
     });
 
