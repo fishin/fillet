@@ -32,6 +32,14 @@ describe('fillet', function () {
         done();
     });
 
+    it('getRunStats no run', function (done) {
+
+        var fillet = new Fillet();
+        var runStats = fillet.getRunStats(null);
+        expect(runStats).to.not.exist();
+        done();
+    });
+
     it('getRunStats checkout commands', function (done) {
 
         var fillet = new Fillet();
