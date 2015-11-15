@@ -1,21 +1,23 @@
-var Code = require('code');
-var Lab = require('lab');
+'use strict';
 
-var Fillet = require('../lib');
+const Code = require('code');
+const Lab = require('lab');
 
-var internals = {};
+const Fillet = require('../lib');
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const internals = {};
 
-describe('fillet', function () {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
 
-    it('getRunStats no checkout', function (done) {
+describe('fillet', () => {
 
-        var fillet = new Fillet();
-        var run = {
+    it('getRunStats no checkout', (done) => {
+
+        const fillet = new Fillet();
+        const run = {
             id: 1,
             commands: [
                 {
@@ -25,23 +27,23 @@ describe('fillet', function () {
                 }
             ]
         };
-        var runStats = fillet.getRunStats(run);
+        const runStats = fillet.getRunStats(run);
         expect(runStats.id).to.equal(1);
         done();
     });
 
-    it('getRunStats no run', function (done) {
+    it('getRunStats no run', (done) => {
 
-        var fillet = new Fillet();
-        var runStats = fillet.getRunStats(null);
+        const fillet = new Fillet();
+        const runStats = fillet.getRunStats(null);
         expect(runStats).to.not.exist();
         done();
     });
 
-    it('getRunStats checkout commands', function (done) {
+    it('getRunStats checkout commands', (done) => {
 
-        var fillet = new Fillet();
-        var run = {
+        const fillet = new Fillet();
+        const run = {
             id: 1,
             checkout: {
                 commands: [
@@ -68,27 +70,27 @@ describe('fillet', function () {
                 }
             }
         };
-        var runStats = fillet.getRunStats(run);
+        const runStats = fillet.getRunStats(run);
         expect(runStats.id).to.equal(1);
         expect(runStats.tests.length).to.equal(2);
         done();
     });
 
-    it('getRunsStats none', function (done) {
+    it('getRunsStats none', (done) => {
 
-        var fillet = new Fillet();
-        var runs = [];
-        var runsStats = fillet.getRunsStats(runs);
+        const fillet = new Fillet();
+        const runs = [];
+        const runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(0);
         expect(runsStats.average.total).to.equal(0);
         expect(runsStats.average.succeeded).to.equal(0);
         done();
     });
 
-    it('getRunsStats', function (done) {
+    it('getRunsStats', (done) => {
 
-        var fillet = new Fillet();
-        var runs = [
+        const fillet = new Fillet();
+        const runs = [
             {
                 jobId: 1,
                 runId: 1,
@@ -109,7 +111,7 @@ describe('fillet', function () {
                 startTime: 3
             }
         ];
-        var runsStats = fillet.getRunsStats(runs);
+        const runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(1);
         expect(runsStats.runs[0].tests.total).to.equal(2);
         expect(runsStats.runs[0].tests.succeeded).to.equal(1);
@@ -117,10 +119,10 @@ describe('fillet', function () {
         done();
     });
 
-    it('getRunsStats limit', function (done) {
+    it('getRunsStats limit', (done) => {
 
-        var fillet = new Fillet();
-        var runs = [
+        const fillet = new Fillet();
+        const runs = [
             {
                 jobId: 1,
                 runId: 1,
@@ -134,15 +136,15 @@ describe('fillet', function () {
                 finishTime: 4
             }
         ];
-        var runsStats = fillet.getRunsStats(runs, 1);
+        const runsStats = fillet.getRunsStats(runs, 1);
         expect(runsStats.runs.length).to.equal(1);
         done();
     });
 
-    it('getRunsStats averages', function (done) {
+    it('getRunsStats averages', (done) => {
 
-        var fillet = new Fillet();
-        var runs = [
+        const fillet = new Fillet();
+        const runs = [
             {
                 jobId: 1,
                 runId: 1,
@@ -160,7 +162,7 @@ describe('fillet', function () {
                 status: 'failed'
             }
         ];
-        var runsStats = fillet.getRunsStats(runs);
+        const runsStats = fillet.getRunsStats(runs);
         expect(runsStats.runs.length).to.equal(2);
         expect(runsStats.average.total).to.equal(20);
         expect(runsStats.average.succeeded).to.equal(30);
